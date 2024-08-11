@@ -1,0 +1,52 @@
+<div class="flex w-full bg-gray-900 min-h-full absolute">
+    <div class="box-container ml-64 flex-grow">
+        <div class="inline-flex justify-between items-center p-6 w-full">
+            <a (click)="onPrevious(); false" [ngStyle]="{
+                'color': (rendition?.location?.atStart) ? 'rgba(55, 65, 81, 1)' : 'rgba(255, 255, 255, 1)',
+                'cursor': (rendition?.location?.atStart) ? 'default' : 'pointer'
+                }" href="#prev"
+                class="ml-6 mr-6 navlink text-white navlink inline-flex items-center px-4 py-2 bg-purple-600 rounded-lg">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M12.293 4.293a1 1 0 010 1.414L7.707 10l4.586 4.293a1 1 0 01-1.414 1.414l-5-5a1 1 0 010-1.414l5-5a1 1 0 011.414 0z" clip-rule="evenodd" />
+                </svg>
+                Previous Chapter
+            </a>
+            <a (click)="onNext(); false"  [ngStyle]="{
+                'color': (atEnd) ? 'rgba(55, 65, 81, 1)' : 'rgba(255, 255, 255, 1)',
+                'cursor': (atEnd) ? 'default' : 'pointer'
+                }"href="#next"
+                class="ml-6 mr-6 navlink text-white navlink inline-flex items-center px-4 py-2 bg-purple-600 rounded-lg">
+                Next Chapter
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M7.707 4.293a1 1 0 000 1.414L12.293 10l-4.586 4.293a1 1 0 001.414 1.414l5-5a1 1 0 000-1.414l-5-5a1 1 0 00-1.414 0z" clip-rule="evenodd" />
+                </svg>
+            </a>
+        </div>
+
+        <div id="epubArea"></div>
+
+        <div class="inline-flex justify-between items-center p-6 w-full">
+            <a (click)="onPrevious(); false" [ngStyle]="{
+                'color': (rendition?.location?.atStart) ? 'rgba(55, 65, 81, 1)' : 'rgba(255, 255, 255, 1)',
+                'cursor': (rendition?.location?.atStart) ? 'default' : 'pointer'
+                }" href="#prev"
+                class="ml-6 mr-6 navlink text-white navlink inline-flex items-center px-4 py-2 bg-purple-600 rounded-lg">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M12.293 4.293a1 1 0 010 1.414L7.707 10l4.586 4.293a1 1 0 01-1.414 1.414l-5-5a1 1 0 010-1.414l5-5a1 1 0 011.414 0z" clip-rule="evenodd" />
+                </svg>
+                Previous Chapter
+            </a>
+            <a (click)="onNext(); false"  [ngStyle]="{
+                'color': (atEnd) ? 'rgba(55, 65, 81, 1)' : 'rgba(255, 255, 255, 1)',
+                'cursor': (atEnd) ? 'default' : 'pointer'
+                }"href="#next"
+                class="ml-6 mr-6 navlink text-white navlink inline-flex items-center px-4 py-2 bg-purple-600 rounded-lg">
+                Next Chapter
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M7.707 4.293a1 1 0 000 1.414L12.293 10l-4.586 4.293a1 1 0 001.414 1.414l5-5a1 1 0 000-1.414l-5-5a1 1 0 00-1.414 0z" clip-rule="evenodd" />
+                </svg>
+            </a>
+        </div>
+
+    </div>
+</div>

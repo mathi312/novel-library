@@ -1,0 +1,27 @@
+<div class="flex w-full bg-gray-900 min-h-full absolute">
+    <div class="ml-64 p-4">
+        <ul class="flex flex-wrap text-white pr-4 pb-4">
+            <li *ngFor="let item of novelsList">
+                <a routerLink="{{item.title}}" routerLinkActive="active" ariaCurrentWhenActive="page">
+                    <div class="w-56 h-80 border rounded-lg shadow bg-gray-800 border-gray-700 ml-1 mr-1 mb-6 hover:cursor-pointer">
+                        <a class="w-56 h-52 absolute">
+                            <img src="" class="rounded-t-lg" />
+                        </a>
+                        <div class="p-5">
+                            <a>
+                                <h5 class="mb-2 text-2xl font-bold tracking-tight text-white">
+                                    {{ item.title }}
+                                </h5>
+                            </a>
+                            <p class="mb-3 font-normal text-gray-400">
+                                {{ item.author }}
+                            </p>
+                        </div>
+                    </div>
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<router-outlet></router-outlet>

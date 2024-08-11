@@ -1,0 +1,65 @@
+<div class="w-full bg-gray-900 h-full fixed">
+    <div class="ml-64 w-9/12 p-4 pt-32">
+        <form [formGroup]="addEpubForm" (ngSubmit)="onSubmit()">
+            <div class="grid gap-6 mb-6 md:grid-cols-2 pb-6">
+                <div>
+                    <label for="title" class="block mb-2 text-sm font-medium text-white">Title:</label>
+                    <input formControlName="title" type="text" id="title" class="border text-sm rounded-lg block w-full p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500" placeholder="Book Title" required />
+                    <div *ngIf="title?.invalid && (title?.dirty || title?.touched)" class="alert alert-danger">
+                        <div *ngIf="title?.hasError('required')" class="text-red-600">Title is required</div>
+                    </div>
+                </div>
+                <div>
+                    <label for="author" class="block mb-2 text-sm font-medium text-white">Author:</label>
+                    <input formControlName="author" type="text" id="author" class="border text-sm rounded-lg block w-full p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500" placeholder="Name of the Author"/>
+                </div>
+            </div>
+            <label for="title" class="block mb-2 text-sm font-medium text-white">Epub file:</label>
+            <div class="flex items-center justify-center w-full pb-6">
+                <label for="dropzone-file" class="flex flex-col items-center justify-center w-full h-64 border-2 border-dashed rounded-lg cursor-pointer bg-gray-700 border-gray-600 hover:border-gray-500 hover:bg-gray-600">
+                    <div class="flex flex-col items-center justify-center pt-5 pb-6">
+                        <svg class="w-8 h-8 mb-4 text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 16">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2"/>
+                        </svg>
+                        <p class="mb-2 text-sm text-gray-400"><span class="font-semibold">Click to upload</span> or drag and drop</p>
+                        <p [hidden]="file" class="text-xs text-gray-400">Filetype: .epub</p>
+                        <p *ngIf="file" class="mb-2 text-sm text-gray-400 font-semibold">{{ file.name }}</p>
+                    </div>
+                    <input formControlName="epub" id="dropzone-file" type="file" class="hidden" accept=".epub" (change)="onFileChange($event)" required />
+                    <div *ngIf="epub?.invalid && (epub?.dirty || epub?.touched)" class="alert alert-danger">
+                        <div *ngIf="epub?.hasError('required')" class="text-red-600">Epub File is required</div>
+                    </div>
+                </label>
+            </div>
+            <button type="submit" class="text-white focus:ring-4 focus:outline-none font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center bg-blue-600 hover:bg-blue-700 focus:ring-blue-800">Upload Epub</button>
+        </form>
+        <!--success or error messages-->
+        <div *ngIf="startUpload" class="flex items-center mt-6 p-4 mb-4 text-sm rounded-lg bg-gray-800 text-blue-400" role="alert">
+            <svg class="flex-shrink-0 inline w-4 h-4 me-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+              <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"/>
+            </svg>
+            <span class="sr-only">Info</span>
+            <div>
+              <span class="font-medium">Upload Underway! Please Wait.</span>
+            </div>
+          </div>
+          <div *ngIf="error" class="flex items-center mt-6 p-4 mb-4 text-sm rounded-lg bg-gray-800 text-red-400" role="alert">
+            <svg class="flex-shrink-0 inline w-4 h-4 me-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+              <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"/>
+            </svg>
+            <span class="sr-only">Info</span>
+            <div>
+              <span class="font-medium">Error while uploading File! Please try again. {{error}}</span>
+            </div>
+          </div>
+          <div *ngIf="success" class="flex items-center mt-6 p-4 mb-4 text-sm rounded-lg bg-gray-800 text-green-400" role="alert">
+            <svg class="flex-shrink-0 inline w-4 h-4 me-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+              <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"/>
+            </svg>
+            <span class="sr-only">Info</span>
+            <div>
+              <span class="font-medium">Upload was Successfull!</span>
+            </div>
+          </div>
+    </div>
+</div>
