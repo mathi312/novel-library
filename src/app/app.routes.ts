@@ -18,5 +18,5 @@ export const routes: Routes = [
   { path: "add-epub", component: AddEpub, canActivate: [authGuard] },
   { path: "library/:title", component: BookViewer, canActivate: [authGuard] },
   { path: "login", component: Login },
-  { path: "*", component: AppComponent },
+  { path: "*", redirectTo: "library", pathMatch: "full" },
 ];
