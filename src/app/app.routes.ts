@@ -4,11 +4,21 @@ import { CreateEpub } from "./create_epub/create_epub.page";
 import { AddEpub } from "./add_epub/add_epub.page";
 import { BookViewer } from "./library/book/book_viewer.page";
 import { AppComponent } from "./app.component";
+import { Login } from "./login/login.page";
+import { authGuard } from "./services/auth_guard.service";
 
 export const routes: Routes = [
-  { path: "", component: AppComponent },
-  { path: "library", component: Library },
-  { path: "create-epub", component: CreateEpub },
-  { path: "add-epub", component: AddEpub },
-  { path: "library/:title", component: BookViewer },
+  {
+    path: "",
+    // component: AppComponent,
+    // canActivate: [authGuard],
+    redirectTo: "library",
+    pathMatch: "full",
+  },
+  { path: "library", component: Library, canActivate: [authGuard] },
+  { path: "create-epub", component: CreateEpub, canActivate: [authGuard] },
+  { path: "add-epub", component: AddEpub, canActivate: [authGuard] },
+  { path: "library/:title", component: BookViewer, canActivate: [authGuard] },
+  { path: "login", component: Login },
+  { path: "*", component: AppComponent, canActivate: [authGuard] },
 ];
