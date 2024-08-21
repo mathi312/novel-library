@@ -46,6 +46,7 @@ export class AppComponent implements OnInit {
       this.auth.isAuthenticatedObs.subscribe(
         (isAuth) => (this.isLoggedIn = isAuth),
       );
+      this.router.navigate(["library"]);
     }
   }
 

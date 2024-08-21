@@ -10,8 +10,6 @@ import { authGuard } from "./services/auth_guard.service";
 export const routes: Routes = [
   {
     path: "",
-    // component: AppComponent,
-    // canActivate: [authGuard],
     redirectTo: "library",
     pathMatch: "full",
   },
@@ -20,5 +18,5 @@ export const routes: Routes = [
   { path: "add-epub", component: AddEpub, canActivate: [authGuard] },
   { path: "library/:title", component: BookViewer, canActivate: [authGuard] },
   { path: "login", component: Login },
-  { path: "*", component: AppComponent, canActivate: [authGuard] },
+  { path: "*", component: AppComponent },
 ];
